@@ -1,0 +1,140 @@
+---
+layout: lecture
+title: HTTP Introduction
+---
+
+section.center data-background="#FF0000"
+  h2.white How do people communicate?
+
+section.center data-background="#FF0000"
+  h2.white How do computers communicate?
+
+section.center data-background="#FFF"
+  h2 Communication protocols
+
+section.canter
+  h2 OSI
+  ol
+    li Physical
+    li Data link (ARP, MAC)
+    li Network (IP)
+    li Transport (TCP, UDP)
+    li Session
+    li Presentation
+    li Application (HTTP, SSH, XMPP, IMAP, POP)
+
+section.center data-background="#FFF"
+  h2 HTTP
+
+section.center data-background="#FFF"
+  h2 Hypertext Transfer Protocol
+
+section.center data-background="#FFF"
+  h2 Simple
+  p GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, CONNECT, PATCH
+
+section.center data-background="#FFF"
+  h2 GET
+  p Retrieve a resource from the server without any side effects.
+
+section.center data-background="#FFF"
+  h2 POST
+  p Create a resource on the server.
+
+section.center data-background="#FFF"
+  h2 PUT
+  p Update a resource on the server.
+
+section.center data-background="#FFF"
+  h2 DELETE
+  p Delete a resource from the server.
+
+section.center data-background="#FFF"
+  h2 Stateless
+  p like a pure function
+
+section.center data-background="#FFF"
+  h2 It knows who you are
+  p sessions and cookies
+
+section.center
+  h2 Request
+  pre: text contenteditable="true"
+    '
+      GET /courses/ HTTP/1.1
+      Host: hackbulgaria.com
+      User-Agent: Mozilla/5.0 AppleWebKit/537.36 Chrome/40.0.2214.115 Safari/537.36
+      Connection: close
+
+section.center
+  h2 Response
+  pre: text contenteditable="true"
+    '
+      HTTP/1.1·301·Moved·Permanently
+      Server:·nginx/1.6.2
+      Date:·Thu,·26·Feb·2015·14:21:03·GMT
+      Content-Type:·text/html
+      Content-Length:·184
+      Connection:·close
+      Location:·https://hackbulgaria.com/
+
+section.center
+  h2 Query string
+  p http://hackbulgaria.com/courses?name=Rails&year=2015
+
+section.center
+  h2 Post parameters
+  pre: text contenteditable="true"
+    '
+      POST /courses HTTP/1.0
+      Host: hackbulgaria.com
+      From: s2gatev@gmail.com
+      User-Agent: Mozilla/5.0 AppleWebKit/537.36 Chrome/40.0.2214.115 Safari/537.36
+      Content-Type: application/x-www-form-urlencoded
+      Content-Length: 32
+
+      name=Rails&year=2015
+
+section.center data-background="#000"
+  h1.white Sinatra
+
+section.center data-background="#FFF"
+  h2 gem install sinatra
+
+section.center
+  h2 Serving content
+  pre: code.ruby contenteditable="true"
+    '
+      require 'sinatra'
+
+      get '/hi' do
+        'Hello World!'
+      end
+
+section.center
+  h2 Passing parameters
+  pre: code.ruby contenteditable="true"
+    '
+      get '/hello/:name' do
+        "Hello \#{params['name']}!"
+      end
+
+section.center
+  h2 Keeping a session
+  pre: code.ruby contenteditable="true"
+    '
+      enable :sessions
+
+      get '/' do
+        "value = " << session[:value].inspect
+      end
+
+      get '/:value' do
+        session['value'] = params['value']
+      end
+
+section.center data-background="#000"
+  h2.white Questions
+
+section.center
+  img.inline(src="img/logo.png")
